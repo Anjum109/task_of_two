@@ -19,8 +19,68 @@
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes bg-move {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 100px 100px;
+  }
+}
+
+.animate-bg-move {
+  animation: bg-move 30s linear infinite;
+}
+
+/* Moving ball animation */
+@keyframes ball {
+  0% {
+    top: 0;
+    left: 0;
+  }
+
+  25% {
+    top: 80%;
+    left: 10%;
+  }
+
+  50% {
+    top: 50%;
+    left: 80%;
+  }
+
+  75% {
+    top: 20%;
+    left: 60%;
+  }
+
+  100% {
+    top: 0;
+    left: 0;
+  }
+}
+
+.animate-ball {
+  animation: ball 20s linear infinite;
+}
+
+.animate-ball_one {
+  animation: ball 30s linear infinite;
+}
+
+.animate-ball_two {
+  animation: ball 50s linear infinite;
+}
+
+.animate-ball_three {
+  animation: ball 40s linear infinite;
+}
+
+.animate-ball_four {
+  animation: ball 25s linear infinite;
+}
+
+.animate-ball_five {
+  animation: ball 45s linear infinite;
 }
