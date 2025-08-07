@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { IoGameController } from "react-icons/io5";
 
 export default function PlayerSetupPage() {
     const router = useRouter();
@@ -20,9 +21,10 @@ export default function PlayerSetupPage() {
             <div className="text-center text-white">
                 <div className="flex justify-center mb-6">
                     <div className="bg-[#0f0f1b] border border-cyan-400 rounded-full p-4">
-                        <svg className="w-10 h-10 text-cyan-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                        {/* <svg className="w-10 h-10 text-cyan-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                             <path d="M6 12h12M12 6v12" />
-                        </svg>
+                        </svg> */}
+                        <IoGameController size={40} />
                     </div>
                 </div>
                 <h1 className="text-2xl font-bold mb-10 text-slate-300">LET THE BATTLE BEGIN!</h1>
