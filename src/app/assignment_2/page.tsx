@@ -66,7 +66,7 @@ export default function Assignment2ListPage() {
     };
 
     return (
-        <div className="p-6">
+        <div className="p-6 bg-black text-blue-200">
             <div className="flex justify-between items-center mb-4">
                 <h2 className="text-2xl font-semibold">Products</h2>
                 <Link

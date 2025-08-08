@@ -1,29 +1,28 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+
+import React, { use, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useGetProductQuery, useUpdateProductMutation } from '@/redux/store/api/productsApi';
 import ProductForm from '@/app/components/assignment2/ProductForm';
 import { Product } from '@/redux/features/product/productTypes';
 
-interface EditProductPageProps {
-    params: {
-        id: string;
-    };
-}
+export default function EditProductPage(props: { params: Promise<{ id: string }> }) {
+    const params = use(props.params);
+    const id = params.id;
 
-export default function EditProductPage({ params }: EditProductPageProps) {
-    const { id } = params;
     const { data: product, isLoading, isError } = useGetProductQuery(Number(id));
     const [updateProduct, { isLoading: isUpdating }] = useUpdateProductMutation();
+    const [successMsg, setSuccessMsg] = useState('');
     const router = useRouter();
 
     const handleUpdate = async (values: Partial<Product>) => {
         try {
             await updateProduct({ id: Number(id), data: values }).unwrap();
-            alert('Product updated successfully');
-            router.push('/assignment_2');
+            setSuccessMsg('✅ Product updated successfully!');
+            // If you still want to redirect after showing success for 1s:
+            // setTimeout(() => router.push('/assignment_2'), 1000);
         } catch (error) {
-            alert('Failed to update product');
+            setSuccessMsg('❌ Failed to update product.');
         }
     };
 
@@ -33,8 +32,15 @@ export default function EditProductPage({ params }: EditProductPageProps) {
     return (
         <div className="p-6 max-w-xl mx-auto">
             <h2 className="text-2xl mb-4">Edit Product</h2>
+
+            {successMsg && (
+                <div className="mb-4 p-3 bg-green-100 border border-green-300 rounded">
+                    {successMsg}
+                </div>
+            )}
+
             <ProductForm initial={product} onSubmit={handleUpdate} />
-            {isUpdating && <p>Updating...</p>}
+            {isUpdating && <p>Saving...</p>}
         </div>
     );
 }
