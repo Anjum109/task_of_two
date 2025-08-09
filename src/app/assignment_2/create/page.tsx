@@ -59,9 +59,17 @@ export default function CreateProductPage() {
             await createProduct(payload).unwrap();
             alert('Product created successfully!');
             // reset or redirect as needed
-        } catch (error: any) {
+        } catch (error: unknown) {
+            if (typeof error === 'object' && error !== null) {
+                if ('data' in error && typeof (error as any).data === 'object') {
+                    alert('Failed to create product: ' + ((error as any).data?.message ?? 'Unknown error'));
+                } else {
+                    alert('Failed to create product: Unknown error');
+                }
+            } else {
+                alert('Failed to create product: Unknown error');
+            }
             console.error('Create failed:', error);
-            alert('Failed to create product: ' + (error?.data?.message || 'Unknown error'));
         }
     };
 
