@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -38,7 +38,7 @@ export default function ProductForm({
     });
 
     // Static category options (can be replaced with API later)
-    const [categories, setCategories] = useState<string[]>([
+    const [categories] = useState<string[]>([
         'All',
         'Electronics',
         'Jewelery',

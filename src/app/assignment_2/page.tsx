@@ -60,7 +60,7 @@ export default function Assignment2ListPage() {
             setConfirmOpen(false);
             setToDeleteId(null);
             refetch();
-        } catch (e) {
+        } catch {
             alert('Delete failed');
         }
     };

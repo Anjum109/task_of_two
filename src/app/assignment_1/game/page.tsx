@@ -34,7 +34,7 @@ export default function GamePage() {
             [0, 4, 8], [2, 4, 6]
         ];
 
-        for (let line of lines) {
+        for (const line of lines) {
             const [a, b, c] = line;
             if (board[a] && board[a] === board[b] && board[a] === board[c]) {
                 const winningPlayer = board[a] === 'X' ? 'playerOne' : 'playerTwo';
@@ -67,14 +67,14 @@ export default function GamePage() {
         return `It's a Draw overall! 🤝 Wanna play again?`;
     };
 
-    const resetAll = () => {
-        setScores({ playerOne: 0, playerTwo: 0 });
-        setRound(1);
-        setBoard(initialBoard);
-        setWinner('');
-        setIsXTurn(true);
-        setShowPopup(false);
-    };
+    // const resetAll = () => {
+    //     setScores({ playerOne: 0, playerTwo: 0 });
+    //     setRound(1);
+    //     setBoard(initialBoard);
+    //     setWinner('');
+    //     setIsXTurn(true);
+    //     setShowPopup(false);
+    // };
 
     const goToAssignment = () => {
         router.push('/assignment_1');

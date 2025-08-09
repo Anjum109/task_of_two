@@ -56,19 +56,26 @@ export default function EditProductPage() {
             await updateProduct({ id, data: payload }).unwrap();
             alert('Product updated successfully!');
             router.push(`/assignment_2/${id}`);
-        } catch (err: any) {
-            // Try to log detailed error if available
-            if (err?.data) {
-                console.error('Update failed with API response:', err.data);
-                alert('Failed to update product: ' + JSON.stringify(err.data));
-            } else if (err?.error) {
-                console.error('Update failed with error:', err.error);
-                alert('Failed to update product: ' + err.error);
+        } catch (err: unknown) {
+            if (typeof err === 'object' && err !== null) {
+                // If the error has a 'data' property
+                if ('data' in err) {
+                    console.error('Update failed with API response:', (err as { data: unknown }).data);
+                    alert('Failed to update product: ' + JSON.stringify((err as { data: unknown }).data));
+                } else if ('error' in err) {
+                    console.error('Update failed with error:', (err as { error: string }).error);
+                    alert('Failed to update product: ' + (err as { error: string }).error);
+                } else {
+                    console.error('Update failed:', err);
+                    alert('Failed to update product');
+                }
             } else {
-                console.error('Update failed:', err);
+                console.error('Unknown error:', err);
                 alert('Failed to update product');
             }
         }
+
+
     };
 
 

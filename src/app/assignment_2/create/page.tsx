@@ -6,8 +6,8 @@ import React, { useState } from 'react';
 
 export default function CreateProductPage() {
     const [createProduct] = useCreateProductMutation();
-    const [successMessage, setSuccessMessage] = useState('');
-    const [errorMessage, setErrorMessage] = useState('');
+    const [successMessage] = useState('');
+    const [errorMessage] = useState('');
 
     const handleCreateProduct = async (values: FormSchema) => {
         try {
