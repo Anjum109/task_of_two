@@ -1,4 +1,4 @@
-// app/assignment2/[id]/page.tsx
+
 
 'use client';
 

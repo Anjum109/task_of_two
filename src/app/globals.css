@@ -33,7 +33,7 @@
   animation: bg-move 30s linear infinite;
 }
 
-/* Moving ball animation */
+
 @keyframes ball {
   0% {
     top: 0;

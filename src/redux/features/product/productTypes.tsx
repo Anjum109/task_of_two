@@ -1,4 +1,4 @@
-// redux/features/product/ProductTypes.tsx 
+
 
 export type Category = {
     id: number | string;

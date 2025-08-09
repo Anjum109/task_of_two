@@ -1,4 +1,4 @@
-// redux/store/api/productsApi.tsx 
+
 
 import { Product } from '@/redux/features/product/productTypes';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
@@ -11,19 +11,19 @@ export const productsApi = createApi({
     }),
     tagTypes: ['Product'],
     endpoints: (builder) => ({
-        // Get paginated products
+        // paginated products
         getProducts: builder.query<Product[], { page?: number; limit?: number }>({
             query: ({ page = 1, limit = 8 }) =>
                 `products?offset=${(page - 1) * limit}&limit=${limit}`,
             providesTags: ['Product'],
         }),
 
-        // Get all categories
+        // all categories
         getCategories: builder.query<{ id: number; name: string }[], void>({
             query: () => 'categories',
         }),
 
-        // Get single product
+        // single product
         getProduct: builder.query<Product, number>({
             query: (id) => `products/${id}`,
             providesTags: ['Product'],

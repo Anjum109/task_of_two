@@ -12,8 +12,8 @@ export default function CreateProductPage() {
         title: '',
         price: '',
         description: '',
-        categoryId: '',  // keep as string temporarily for select input
-        image: '',       // single image URL
+        categoryId: '',
+        image: '',
     });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -24,7 +24,7 @@ export default function CreateProductPage() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        // Validate categoryId & price as numbers
+
         const categoryIdNum = Number(formData.categoryId);
         const priceNum = Number(formData.price);
 
@@ -53,12 +53,11 @@ export default function CreateProductPage() {
             images: formData.image ? [formData.image.trim()] : ['https://placeimg.com/640/480/any'],
         };
 
-        console.log('Payload:', payload);  // debug here
-
+        console.log('Payload:', payload);
         try {
             await createProduct(payload).unwrap();
             alert('Product created successfully!');
-            // reset or redirect as needed
+
         } catch (error: unknown) {
             if (
                 typeof error === 'object' &&

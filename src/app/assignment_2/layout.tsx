@@ -1,4 +1,4 @@
-// app/assignment2/layoyt
+
 
 'use client';
 

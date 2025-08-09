@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { IoGameController } from "react-icons/io5";
 
+
+
 export default function PlayerSetupPage() {
     const router = useRouter();
     const [playerOne, setPlayerOne] = useState('');
@@ -17,10 +19,10 @@ export default function PlayerSetupPage() {
 
     return (
         <div className="min-h-screen relative bg-[#0f0f1b] overflow-hidden">
-            {/* Animated Pixel Grid Background */}
+
             <div className="absolute inset-0 animate-bg-move bg-[radial-gradient(circle_at_1px_1px,_#1f2937_1px,_transparent_0)] [background-size:20px_20px] opacity-20 z-0" />
 
-            {/* Moving Glowing Ball */}
+            {/* Moving Ball */}
             <div className="absolute w-2 h-2 bg-cyan-100 rounded-full shadow-[0_0_20px_5px_rgba(34,211,238,0.6)] animate-ball z-0" />
             <div className="absolute w-2 h-2 bg-cyan-200 rounded-full shadow-[0_0_20px_5px_rgba(34,211,238,0.6)] animate-ball_one z-0" />
             <div className="absolute w-2 h-2 bg-cyan-300 rounded-full shadow-[0_0_20px_5px_rgba(34,211,238,0.6)] animate-ball_two z-0" />
@@ -29,7 +31,7 @@ export default function PlayerSetupPage() {
             <div className="absolute w-2 h-2 bg-cyan-600 rounded-full shadow-[0_0_20px_5px_rgba(34,211,238,0.6)] animate-ball_five z-0" />
 
 
-            {/* Foreground Content */}
+            {/* Content */}
             <div className="relative z-10 flex items-center justify-center mt-12">
                 <div className="text-center text-white">
                     <div className="flex justify-center mb-6">

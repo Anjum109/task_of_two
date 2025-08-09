@@ -9,7 +9,7 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product, onDelete }: ProductCardProps) {
-    // Shorten description to 100 chars with "..." if longer
+
     const shortDescription =
         product.description && product.description.length > 100
             ? product.description.slice(0, 100) + '... '

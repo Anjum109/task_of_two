@@ -1,4 +1,3 @@
-// app/assignment2/[id]/edit/page.tsx
 
 'use client';
 
@@ -19,11 +18,11 @@ export default function EditProductPage() {
         title: '',
         price: '',
         description: '',
-        categoryId: '', // store category id as string for select input
-        image: '', // single image url
+        categoryId: '',
+        image: '',
     });
 
-    // Pre-fill form when product is loaded
+
     useEffect(() => {
         if (product) {
             setFormData({
@@ -60,7 +59,7 @@ export default function EditProductPage() {
             router.push(`/assignment_2/${id}`);
         } catch (err: unknown) {
             if (typeof err === 'object' && err !== null) {
-                // If the error has a 'data' property
+
                 if ('data' in err) {
                     console.error('Update failed with API response:', (err as { data: unknown }).data);
                     alert('Failed to update product: ' + JSON.stringify((err as { data: unknown }).data));

@@ -50,7 +50,7 @@ export default function GamePage() {
     };
 
     const resetBoard = () => {
-        // If current round is the last, show popup
+
         if (round >= totalRounds) {
             setShowPopup(true);
         } else {
@@ -67,14 +67,7 @@ export default function GamePage() {
         return `It's a Draw overall! 🤝 Wanna play again?`;
     };
 
-    // const resetAll = () => {
-    //     setScores({ playerOne: 0, playerTwo: 0 });
-    //     setRound(1);
-    //     setBoard(initialBoard);
-    //     setWinner('');
-    //     setIsXTurn(true);
-    //     setShowPopup(false);
-    // };
+
 
     const goToAssignment = () => {
         router.push('/assignment_1');
@@ -108,7 +101,7 @@ export default function GamePage() {
                 </p>
             )}
 
-            {/* 🔁 Reset Round button is always visible */}
+
             {winner && (
                 <button
                     onClick={resetBoard}
@@ -118,7 +111,7 @@ export default function GamePage() {
                 </button>
             )}
 
-            {/* 🏆 Final Popup */}
+            {/* Final Popup */}
             {showPopup && (
                 <div className="absolute inset-0 bg-black/80 flex items-center justify-center z-10">
                     <div className="bg-white text-black p-8 rounded-2xl text-center max-w-sm">
@@ -132,12 +125,7 @@ export default function GamePage() {
                             >
                                 🔁 Play Again
                             </button>
-                            {/* <button
-                                
-                                className="bg-gray-500 text-white px-6 py-2 rounded-full hover:bg-gray-600"
-                            >
-                                ↩ Go to Assignment
-                            </button> */}
+
                         </div>
                     </div>
                 </div>

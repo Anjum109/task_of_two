@@ -1,4 +1,4 @@
-// redux/store/index.js 
+
 
 'use client';
 import { configureStore } from '@reduxjs/toolkit';
@@ -17,11 +17,11 @@ export const store = configureStore({
 
 setupListeners(store.dispatch);
 
-// Helper types
+
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 
-// A small wrapper to use in app/layout.tsx (client component)
+
 export function ReduxProvider({ children }: { children: React.ReactNode }) {
     return <Provider store={store}>{children}</Provider>;
 }
