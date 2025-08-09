@@ -60,17 +60,20 @@ export default function CreateProductPage() {
             alert('Product created successfully!');
             // reset or redirect as needed
         } catch (error: unknown) {
-            if (typeof error === 'object' && error !== null) {
-                if ('data' in error && typeof (error as any).data === 'object') {
-                    alert('Failed to create product: ' + ((error as any).data?.message ?? 'Unknown error'));
-                } else {
-                    alert('Failed to create product: Unknown error');
-                }
+            if (
+                typeof error === 'object' &&
+                error !== null &&
+                'data' in error &&
+                typeof (error as { data?: { message?: string } }).data === 'object' &&
+                (error as { data?: { message?: string } }).data?.message
+            ) {
+                alert('Failed to create product: ' + (error as { data: { message: string } }).data.message);
             } else {
                 alert('Failed to create product: Unknown error');
             }
             console.error('Create failed:', error);
         }
+
     };
 
     if (isLoading) return <p>Loading categories...</p>;
