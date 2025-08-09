@@ -14,7 +14,7 @@ export default function ProductDetailPage() {
     if (!product) return <p>No product found.</p>;
 
     return (
-        <div className='bg-black text-white h-[1000px] px-[300px] py-[100px]'>
+        <div className='bg-black text-white h-[1000px] p-12 lg:px-[300px] lg:py-[100px]'>
             <h1 className='text-[25px] font-bold'><span className='text-blue-300'>Title:</span> {product.title}</h1>
 
             <p className='text-[25px] font-bold'><span className='text-blue-300'>Price: </span> ${product.price}</p>

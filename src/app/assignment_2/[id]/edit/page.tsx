@@ -82,10 +82,10 @@ export default function EditProductPage() {
     if (loadingProduct || loadingCategories) return <p>Loading...</p>;
 
     return (
-        <div className="bg-black w-full text-white py-[100px]">
+        <div className="bg-black w-full text-white py-12 lg:py-[100px]">
             <div className="w-full flex flex-col items-center justify-center">
                 <h1 className="text-4xl">Edit Product</h1>
-                <form onSubmit={handleSubmit} className="bg-black text-white mt-5 w-full px-[100px] max-w-3xl">
+                <form onSubmit={handleSubmit} className="bg-black text-white mt-5 w-full px-12">
                     <div className="flex flex-col gap-4">
                         <div className="flex flex-col">
                             <label htmlFor="title" className="mb-1">
