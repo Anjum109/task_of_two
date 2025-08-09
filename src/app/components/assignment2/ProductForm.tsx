@@ -3,17 +3,14 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Product } from '@/redux/features/product/productTypes';
 
 const productSchema = z.object({
     title: z.string().min(3, 'Title too short').max(120),
-    price: z.number().positive('Must be positive'),
-    description: z.string().optional(),
-    category: z.string().optional(),
-    image: z.string().url().optional(),
-    stock: z.number().int().nonnegative().optional(),
+    price: z.number({ error: 'Price is required' }).positive('Must be positive'),
+    description: z.string().min(1, 'Description is required'),
+    categoryId: z.number({ error: 'Category is required' }).int().positive(),
+    image: z.string().url('Image must be a valid URL'),
 });
-
 
 export type FormSchema = z.infer<typeof productSchema>;
 
@@ -21,44 +18,32 @@ export default function ProductForm({
     initial,
     onSubmit,
 }: {
-    initial?: Partial<Product>;
-    onSubmit: (values: FormSchema) => Promise<boolean> | void;
-
+    initial?: Partial<FormSchema>;
+    onSubmit: (values: FormSchema) => Promise<void> | void;
 }) {
     const { register, handleSubmit, formState: { errors }, reset } = useForm<FormSchema>({
         resolver: zodResolver(productSchema),
-        defaultValues: {
-            title: initial?.title ?? '',
-            price: initial?.price ?? 0,
-            description: initial?.description ?? '',
-            category: (initial?.category as string) ?? '',
-
-            stock: initial?.stock ?? 0,
+        defaultValues: initial ?? {
+            title: '',
+            price: 0,
+            description: '',
+            categoryId: 0,
+            image: '',
         },
     });
-
-    // Static category options (can be replaced with API later)
-    const [categories] = useState<string[]>([
-        'All',
-        'Electronics',
-        'Jewelery',
-        'Men',
-    ]);
 
     const [successMessage, setSuccessMessage] = useState('');
 
     const handleFormSubmit = async (values: FormSchema) => {
         await onSubmit(values);
         setSuccessMessage('✅ Product added successfully!');
-        reset(); // clears the form
-        setTimeout(() => setSuccessMessage(''), 3000); // remove after 3s
+        reset();
+        setTimeout(() => setSuccessMessage(''), 3000);
     };
 
     return (
         <form onSubmit={handleSubmit(handleFormSubmit)} className="max-w-xl space-y-4">
-            {successMessage && (
-                <p className="text-green-600 font-medium">{successMessage}</p>
-            )}
+            {successMessage && <p className="text-green-600 font-medium">{successMessage}</p>}
 
             <div>
                 <label className="block">Title</label>
@@ -68,25 +53,36 @@ export default function ProductForm({
 
             <div>
                 <label className="block">Price</label>
-                <input type="number" step="0.01" {...register('price', { valueAsNumber: true })} className="w-full p-2 border rounded" />
+                <input
+                    type="number"
+                    step="0.01"
+                    {...register('price', { valueAsNumber: true })}
+                    className="w-full p-2 border rounded"
+                />
                 {errors.price && <p className="text-red-500 text-sm">{errors.price.message}</p>}
             </div>
 
             <div>
-                <label className="block">Category</label>
-                <select {...register('category')} className="w-full p-2 border rounded">
-                    <option value="">Select a category</option>
-                    {categories.map((cat) => (
-                        <option key={cat} value={cat}>
-                            {cat}
-                        </option>
-                    ))}
-                </select>
+                <label className="block">Category ID</label>
+                <input
+                    type="number"
+                    {...register('categoryId', { valueAsNumber: true })}
+                    className="w-full p-2 border rounded"
+                    placeholder="Enter category ID (e.g., 1, 2, 3)"
+                />
+                {errors.categoryId && <p className="text-red-500 text-sm">{errors.categoryId.message}</p>}
             </div>
 
             <div>
                 <label className="block">Description</label>
                 <textarea {...register('description')} className="w-full p-2 border rounded" />
+                {errors.description && <p className="text-red-500 text-sm">{errors.description.message}</p>}
+            </div>
+
+            <div>
+                <label className="block">Image URL</label>
+                <input {...register('image')} className="w-full p-2 border rounded" placeholder="https://example.com/image.jpg" />
+                {errors.image && <p className="text-red-500 text-sm">{errors.image.message}</p>}
             </div>
 
             <div className="flex gap-2">

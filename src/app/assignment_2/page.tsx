@@ -1,3 +1,5 @@
+// app/assignment2/page.tsx
+
 'use client';
 
 import React, { useState } from 'react';

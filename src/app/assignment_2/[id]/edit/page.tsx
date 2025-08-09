@@ -1,3 +1,5 @@
+// app/assignment2/[id]/edit/page.tsx
+
 'use client';
 
 import { useGetProductQuery, useUpdateProductMutation, useGetCategoriesQuery } from '@/redux/store/api/productsApi';

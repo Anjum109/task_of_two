@@ -1,3 +1,5 @@
+// redux/store/api/productsApi.tsx 
+
 import { Product } from '@/redux/features/product/productTypes';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
@@ -37,15 +39,17 @@ export const productsApi = createApi({
             invalidatesTags: ['Product'],
         }),
 
+
         // Update product
-        updateProduct: builder.mutation({
+        updateProduct: builder.mutation<Product, { id: number; data: Partial<Product> }>({
             query: ({ id, data }) => ({
                 url: `products/${id}`,
-                method: 'PATCH', // ✅ instead of PUT
-                body: data
+                method: 'PUT',   // use PUT instead of PATCH
+                body: data,
             }),
-            invalidatesTags: ['Product']
+            invalidatesTags: ['Product'],
         }),
+
 
 
         // Delete product

@@ -1,3 +1,5 @@
+// app/assignment2/layoyt
+
 'use client';
 
 import { ReduxProvider } from '@/redux/store/index';
