@@ -38,14 +38,15 @@ export const productsApi = createApi({
         }),
 
         // Update product
-        updateProduct: builder.mutation<Product, { id: number; data: Partial<Product> }>({
+        updateProduct: builder.mutation({
             query: ({ id, data }) => ({
                 url: `products/${id}`,
-                method: 'PUT',
-                body: data,
+                method: 'PATCH', // ✅ instead of PUT
+                body: data
             }),
-            invalidatesTags: ['Product'],
+            invalidatesTags: ['Product']
         }),
+
 
         // Delete product
         deleteProduct: builder.mutation<void, number>({

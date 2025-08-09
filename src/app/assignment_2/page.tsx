@@ -83,9 +83,15 @@ export default function Assignment2ListPage() {
                         value={query}
                         onChange={(e) => setQuery(e.target.value)}
                         placeholder="Search by name..."
-                        className="w-full p-2 border rounded mb-4"
+                        className="w-full p-2 border rounded lg:mb-4"
                     />
-
+                    <div className='mb-3 lg:hidden'>
+                        <Pagination
+                            page={page}
+                            onPageChange={setPage}
+                            hasMore={products.length === limit}
+                        />
+                    </div>
                     {isLoading && <div>Loading...</div>}
                     {error && <div>Error loading products</div>}
 
@@ -95,21 +101,24 @@ export default function Assignment2ListPage() {
                         ))}
                     </div>
 
-                    <Pagination
-                        page={page}
-                        onPageChange={setPage}
-                        hasMore={products.length === limit}
-                    />
+                    <div className='mt-20 hidden lg:block'>
+                        <Pagination
+                            page={page}
+                            onPageChange={setPage}
+                            hasMore={products.length === limit}
+                        />
+                    </div>
                 </div>
-
-                <CategorySidebar
-                    categories={['electronics', 'jewelery', 'men clothing']}
-                    selectedCategory={category}
-                    onSelectCategory={(cat) => {
-                        setCategory(cat === 'all' ? null : cat);
-                    }}
-                />
+                <div className='hidden lg:block'>
+                    <CategorySidebar
+                        categories={['electronics', 'jewelery', 'men clothing']}
+                        selectedCategory={category}
+                        onSelectCategory={(cat) => {
+                            setCategory(cat === 'all' ? null : cat);
+                        }}
+                    />    </div>
             </div>
+
 
             <ConfirmModal
                 isOpen={confirmOpen}
@@ -118,6 +127,7 @@ export default function Assignment2ListPage() {
                 onConfirm={onDeleteConfirm}
                 onCancel={() => setConfirmOpen(false)}
             />
+
         </div>
     );
 }

@@ -14,12 +14,12 @@ export default function ProductDetailPage() {
     if (!product) return <p>No product found.</p>;
 
     return (
-        <div>
-            <h1>{product.title}</h1>
+        <div className='bg-black text-white h-[1000px] px-[300px] py-[100px]'>
+            <h1 className='text-[25px] font-bold'><span className='text-blue-300'>Title:</span> {product.title}</h1>
 
-            <p>Price: ${product.price}</p>
-            <p>{product.description}</p>
+            <p className='text-[25px] font-bold'><span className='text-blue-300'>Price: </span> ${product.price}</p>
+            <p className='text-[18px] mt-5'>{product.description}</p>
 
-        </div>
+        </div >
     );
 }

@@ -14,14 +14,16 @@ const productSchema = z.object({
     stock: z.number().int().nonnegative().optional(),
 });
 
-type FormSchema = z.infer<typeof productSchema>;
+
+export type FormSchema = z.infer<typeof productSchema>;
 
 export default function ProductForm({
     initial,
     onSubmit,
 }: {
     initial?: Partial<Product>;
-    onSubmit: (values: FormSchema) => Promise<void> | void;
+    onSubmit: (values: FormSchema) => Promise<boolean> | void;
+
 }) {
     const { register, handleSubmit, formState: { errors }, reset } = useForm<FormSchema>({
         resolver: zodResolver(productSchema),
@@ -30,7 +32,7 @@ export default function ProductForm({
             price: initial?.price ?? 0,
             description: initial?.description ?? '',
             category: (initial?.category as string) ?? '',
-            image: initial?.image ?? '',
+
             stock: initial?.stock ?? 0,
         },
     });

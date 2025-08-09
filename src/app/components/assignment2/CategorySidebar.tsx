@@ -12,6 +12,7 @@ export default function CategorySidebar({ categories, selectedCategory, onSelect
         <aside className="w-64 sticky top-20 h-fit p-3 border rounded">
             <h4 className="font-semibold mb-2">Categories</h4>
             <ul className="flex flex-col gap-2">
+                {/* "All" category */}
                 <li>
                     <button
                         className={`text-left ${selectedCategory === null ? 'font-bold' : ''}`}
@@ -20,6 +21,8 @@ export default function CategorySidebar({ categories, selectedCategory, onSelect
                         All
                     </button>
                 </li>
+
+                {/* Render all other categories dynamically */}
                 {categories.map((cat) => (
                     <li key={cat}>
                         <button
