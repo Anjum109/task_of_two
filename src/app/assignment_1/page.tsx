@@ -30,7 +30,7 @@ export default function PlayerSetupPage() {
 
 
             {/* Foreground Content */}
-            <div className="relative z-10 flex items-center justify-center min-h-screen">
+            <div className="relative z-10 flex items-center justify-center mt-12">
                 <div className="text-center text-white">
                     <div className="flex justify-center mb-6">
                         <div className="bg-[#0f0f1b] border border-cyan-400 rounded-full p-4">
